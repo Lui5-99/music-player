@@ -1,18 +1,21 @@
-import { View, TouchableHighlight, StyleSheet, Text, Image } from 'react-native';
-import FastImage from 'react-native-fast-image';
-import { unknownTrackImageUri } from '../constants/image';
-import { colors, fontSize } from '../constants/tokens';
-import { defaultStyles } from '../styles';
+import {
+  View,
+  TouchableHighlight,
+  StyleSheet,
+  Text,
+  Image,
+} from "react-native";
+import FastImage from "react-native-fast-image";
+import { unknownTrackImageUri } from "../constants/image";
+import { colors, fontSize } from "../constants/tokens";
+import { defaultStyles } from "../styles";
+import { Track } from "react-native-track-player";
 
 export type TrackListItemProps = {
-  track: {
-    title: string;
-    image?: string;
-    artist?: string;
-  };
+  track: Track;
 };
 
-const TrackListItem = ({ track }: TrackListItemProps ) => {
+const TrackListItem = ({ track }: TrackListItemProps) => {
   const isActiveTrack = false;
 
   return (
@@ -31,29 +34,27 @@ const TrackListItem = ({ track }: TrackListItemProps ) => {
             }}  
           />
           */}
-          <Image 
-            source={{ uri: track.image ?? unknownTrackImageUri }}
+          <Image
+            source={{ uri: track.artwork ?? unknownTrackImageUri }}
             style={{
               ...styles.trackArtworkImage,
               opacity: isActiveTrack ? 0.6 : 1,
-            }} />
+            }}
+          />
         </View>
         {/* Track title and Artist*/}
-        <View style={{width: '100%'}}>
-          <Text 
-            numberOfLines={1} 
-            style={{ 
-              ...styles.trackTitleText, 
-              color: isActiveTrack ? colors.primary : colors.text 
-            }} 
+        <View style={{ width: "100%" }}>
+          <Text
+            numberOfLines={1}
+            style={{
+              ...styles.trackTitleText,
+              color: isActiveTrack ? colors.primary : colors.text,
+            }}
           >
             {track.title}
           </Text>
           {track.artist && (
-            <Text 
-              numberOfLines={1} 
-              style={styles.trackArtistText} 
-            >
+            <Text numberOfLines={1} style={styles.trackArtistText}>
               {track.artist}
             </Text>
           )}
@@ -64,10 +65,10 @@ const TrackListItem = ({ track }: TrackListItemProps ) => {
 };
 
 const styles = StyleSheet.create({
-  trackItemContainer:{
-    flexDirection: 'row',
+  trackItemContainer: {
+    flexDirection: "row",
     columnGap: 14,
-    alignItems: 'center',
+    alignItems: "center",
     paddingRight: 20,
   },
   trackArtworkImage: {
@@ -78,15 +79,15 @@ const styles = StyleSheet.create({
   trackTitleText: {
     ...defaultStyles.text,
     fontSize: fontSize.sm,
-    fontWeight: '600',
-    maxWidth: '90%'
+    fontWeight: "600",
+    maxWidth: "90%",
   },
   trackArtistText: {
     ...defaultStyles.text,
     color: colors.textMuted,
     fontSize: 14,
     marginTop: 4,
-  }
+  },
 });
 
 export default TrackListItem;

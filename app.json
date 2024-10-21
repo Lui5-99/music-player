@@ -14,7 +14,10 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.lui5-99.music-player"
+      "bundleIdentifier": "com.lui5-99.music-player",
+      "infoPlist": {
+        "UIBackgroundModes": ["audio"]
+      }
     },
     "android": {
       "adaptiveIcon": {
